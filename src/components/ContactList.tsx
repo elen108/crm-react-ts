@@ -42,7 +42,11 @@ const ContactList: React.FC = () => {
     <div className={classes.mainField}>
       <div className={classes.titleWrapper}>
         <h2 className={classes.title}>Total Contacts: {contacts.length}</h2>
-        <AddNewContact onAdd={onAdd} formData={formData} setFormData={setFormData} />
+        <AddNewContact
+          onAdd={onAdd}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </div>
 
       {contacts.map((contact) => (

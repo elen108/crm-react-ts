@@ -84,7 +84,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
 
   return (
     <div>
-      <Dialog open={showForm} maxWidth="xs" fullWidth>
+      <Dialog open={showForm} maxWidth='xs' fullWidth>
         <DialogTitle>Форма ввода</DialogTitle>
         <DialogContent className={classes.formContainer}>
           <form onSubmit={handleFormSubmit} className={classes.form}>
@@ -118,8 +118,6 @@ const ContactForm: React.FC<ContactFormProps> = ({
               }}
               dateFormat='dd/MM/yy'
               name='date'
-    
-              
             />
 
             <Button

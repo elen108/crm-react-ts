@@ -42,8 +42,10 @@ const AddNewContact: React.FC<AddNewContactProps> = ({
   }
 
   return (
-    <div >
-      <Button className={classes.btn} onClick={() => setShowForm(true)}>Add +</Button>
+    <div>
+      <Button className={classes.btn} onClick={() => setShowForm(true)}>
+        Add +
+      </Button>
     </div>
   )
 }

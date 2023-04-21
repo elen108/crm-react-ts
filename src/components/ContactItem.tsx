@@ -37,7 +37,7 @@ const ContactItem: React.FC<ContactItemProps> = ({
   return (
     <Card className={classes.card}>
       <input type='checkbox' />
-      <div>{contact.id.slice(0,5)}</div>
+      <div>{contact.id.slice(0, 5)}</div>
       <div>{formData.name}</div>
       <div>{formData.regnumber}</div>
       <div>{formData.date?.toLocaleDateString()}</div>
