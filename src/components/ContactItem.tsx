@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, Card } from '@material-ui/core'
+import { Card } from '@material-ui/core'
 import { AiFillDelete } from 'react-icons/ai'
-import { Contact } from '../state/model'
+import { Contact, FormData } from '../state/model'
 
 const useStyles = makeStyles({
   card: {
@@ -19,25 +19,28 @@ interface ContactItemProps {
   contact: Contact
   contacts: Contact[]
   setContacts: React.Dispatch<React.SetStateAction<Contact[]>>
-  text: string
+  formData: FormData
 }
 
 const ContactItem: React.FC<ContactItemProps> = ({
   contact,
   contacts,
   setContacts,
-  text,
+  formData,
 }) => {
   const classes = useStyles()
 
-  const deleteContact = (id: number) => {
+  const deleteContact = (id: string) => {
     setContacts(contacts.filter((contact) => contact.id !== id))
   }
 
   return (
     <Card className={classes.card}>
       <input type='checkbox' />
-      <div>{text}</div>
+      <div>{contact.id.slice(0,5)}</div>
+      <div>{formData.name}</div>
+      <div>{formData.regnumber}</div>
+      <div>{formData.date?.toLocaleDateString()}</div>
       <AiFillDelete onClick={() => deleteContact(contact.id)} />
     </Card>
   )

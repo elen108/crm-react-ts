@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { v4 as uuidv4 } from 'uuid'
 import ContactItem from './ContactItem'
 import AddNewContact from './AddNewContact'
-import { Contact } from '../state/model'
+import { Contact, FormData } from '../state/model'
 
 const useStyles = makeStyles({
   mainField: {
@@ -26,10 +27,14 @@ const useStyles = makeStyles({
 const ContactList: React.FC = () => {
   const classes = useStyles()
   const [contacts, setContacts] = useState<Array<Contact>>([])
-  const [value, setValue] = useState<string>('')
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    regnumber: null,
+    date: null,
+  })
 
   const onAdd = () => {
-    setContacts([...contacts, { id: Date.now(), value }])
+    setContacts([...contacts, { id: uuidv4(), formData }])
     console.log(contacts)
   }
 
@@ -37,7 +42,7 @@ const ContactList: React.FC = () => {
     <div className={classes.mainField}>
       <div className={classes.titleWrapper}>
         <h2 className={classes.title}>Total Contacts: {contacts.length}</h2>
-        <AddNewContact onAdd={onAdd} value={value} setValue={setValue} />
+        <AddNewContact onAdd={onAdd} formData={formData} setFormData={setFormData} />
       </div>
 
       {contacts.map((contact) => (
@@ -46,7 +51,7 @@ const ContactList: React.FC = () => {
           contact={contact}
           contacts={contacts}
           setContacts={setContacts}
-          text={contact.value}
+          formData={contact.formData}
         />
       ))}
     </div>

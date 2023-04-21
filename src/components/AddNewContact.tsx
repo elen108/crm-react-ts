@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ContactForm from './ContactForm'
+import { FormData } from '../state/model'
 
 type AddNewContactProps = {
-  onAdd: (value: string) => void
-  value: string
-  setValue: React.Dispatch<React.SetStateAction<string>>
+  onAdd: (formData: FormData) => void
+  formData: FormData
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>
 }
 
 const useStyles = makeStyles({
@@ -19,8 +20,8 @@ const useStyles = makeStyles({
 
 const AddNewContact: React.FC<AddNewContactProps> = ({
   onAdd,
-  value,
-  setValue,
+  formData,
+  setFormData,
 }) => {
   const [showForm, setShowForm] = useState(false)
   const classes = useStyles()
@@ -28,12 +29,14 @@ const AddNewContact: React.FC<AddNewContactProps> = ({
   if (showForm) {
     return (
       <ContactForm
-        onAdd={(value) => {
-          onAdd(value)
+        onAdd={(formData) => {
+          onAdd(formData)
           setShowForm(false)
         }}
-        value={value}
-        setValue={setValue}
+        formData={formData}
+        setFormData={setFormData}
+        showForm={showForm}
+        setShowForm={setShowForm}
       />
     )
   }
